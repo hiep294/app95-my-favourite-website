@@ -1,0 +1,41 @@
+.website{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.5s;
+  cursor: default
+}
+
+.flex-style{
+  display: flex;
+  justify-content: space-between
+}
+
+.icons img{
+  opacity: 0.3;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-left: 13px;
+  width: 15px
+}
+
+.form-icon{
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.icons img:hover{
+  opacity: 1;
+}
+
+.ghim-icon{
+  opacity: 1;
+  transition: opacity 0.5s ease 0s;
+  position: absolute;
+  width: 40px
+}
+
+.card-text{
+  color: #212529
+}

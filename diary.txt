@@ -1,0 +1,48 @@
+how to use useEffect to setState
+use arr.splice(index,1) to delete an item in array
+componentWillUnmount will be excuted before componentDidMount and componentDidUpdate
+
+useEffect(() => {
+    // setCount(count + 1)
+    console.log(count)
+  }, [count])
+=> this effect is called after rendering when count has changed
+
+useEffect(() => {
+    // setCount(count + 1)
+    console.log(count)
+  }, [count, count2])
+=> still be called although only count has change, and count2 has not changed
+
+function (){
+
+  function fetchDataFromAPI(){}
+
+  fetchDataFromAPI()
+} => fetchDataAPI in main function, not use it in useEffect
+
+click duple to choose a website
+
+validate in while updating
+https://stackoverflow.com/questions/37614568/mongoose-update-does-not-trigger-validation-checking
+
+useReducer in hooks
+const [count, dispatch] = useReducer(counterReducer, 0);
+const handleIncrease = () => {
+  dispatch(action);
+};
+const handleDecrease = () => {
+  dispatch(action);
+};
+* rule (in default with it own design):
+action = {type: 'abc'}
+=> action must be an object. key `type` is corresponding to the reducer
+
+how to pass callback to component? without using connect
+=> continue doing things
+
+there no need to define initial state for reducers in redux hooks, because it is defined when creating a line useReducer
+
+* use hooks if it relates to use both componentDidMount and componentDidUpdate
+* should not use hooks to fetch data
+
