@@ -106,7 +106,7 @@ const mapDispatchToProps = (dispatch) => ({
       // handle success
       dispatch(createWebsite(item))
       setTimeout(() => {
-        setErrors({ errors: { status: false } })
+        setErrors({ errors: { status: false }, link: '', description: '' })
       }, 0)
     }, (info) => {
       // handling invalid
