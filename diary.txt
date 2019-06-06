@@ -46,3 +46,5 @@ there no need to define initial state for reducers in redux hooks, because it is
 * use hooks if it relates to use both componentDidMount and componentDidUpdate
 * should not use hooks to fetch data
 
+action name is use to name for controller method like:
+'index',  'update', 'destroy', 'create' 

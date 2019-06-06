@@ -1,8 +1,8 @@
 import React from 'react'
 import Website from './Website'
-import WebsiteCtl from '../APIConns/websiteCtl'
 import { readWebsites, editWebsite } from '../reduxEls/actions/websiteActions'
 import { connect } from 'react-redux'
+import WebsiteItemCtl from '../APIConns/websiteItemCtl'
 
 
 
@@ -13,7 +13,7 @@ class Websites extends React.Component {
   }
 
   componentDidMount() {
-    WebsiteCtl.read(this.props.readWebsites)
+    WebsiteItemCtl.index(this.props.readWebsites)
   }
 
   onEditWebsite = (item) => {

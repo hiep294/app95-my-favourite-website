@@ -4,7 +4,7 @@ import deleteIcon from '../icons/delete.png'
 import warningIcon from '../icons/warning.png'
 import { connect } from 'react-redux'
 import { deleteWebsite } from '../reduxEls/actions/websiteActions'
-import WebsiteCtl from '../APIConns/websiteCtl'
+import WebsiteItemCtl from '../APIConns/websiteItemCtl'
 
 class ModalExample extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class ModalExample extends React.Component {
 
 const mapDispatchToProps = (dispatch) => ({
   deleteWebsite: (index, _id) => {
-    WebsiteCtl.delete(_id, () => {
+    WebsiteItemCtl.delete(_id, () => {
       // handleSuccess
       dispatch(deleteWebsite(index))
     })

@@ -4,8 +4,8 @@ import saveIcon from '../icons/save.png'
 import addIcon from '../icons/add.png'
 import { connect } from 'react-redux'
 import { createWebsite, closeEditingWebsite, updateWebsite } from '../reduxEls/actions/websiteActions'
-import WebsiteCtl from '../APIConns/websiteCtl';
 import ErrorsLaunchModel from './ErrorsLaunchModel'
+import WebsiteItemCtl from '../APIConns/websiteItemCtl'
 
 class Form extends React.Component {
   state = {
@@ -59,7 +59,8 @@ class Form extends React.Component {
   render() {
     const styleOfEditIcons = {
       transition: 'opacity 0.5s',
-      opacity: this.state.onEdit ? 1 : 0.3
+      opacity: this.state.onEdit ? 1 : 0.3,
+      cursor: this.state.onEdit ? 'pointer' : 'default'
     }
 
     return (
@@ -102,7 +103,7 @@ const mapStateToProps = (bState) => ({
 // prepare: WebsiteCtl.create, actions(updateWebsiteId, createWebsite)
 const mapDispatchToProps = (dispatch) => ({
   createWebsite: (website, setErrors) => {
-    WebsiteCtl.create(website, (item) => {
+    WebsiteItemCtl.create(website, (item) => {
       // handle success
       dispatch(createWebsite(item))
       setTimeout(() => {
@@ -117,7 +118,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
   closeEditingWebsite: () => dispatch(closeEditingWebsite()),
   updateWebsite: (website, setErrors) => {
-    WebsiteCtl.update(website, () => {
+    WebsiteItemCtl.update(website, () => {
       // handle success
       dispatch(updateWebsite(website))
       setTimeout(() => {
