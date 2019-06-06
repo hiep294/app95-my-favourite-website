@@ -5,12 +5,10 @@ import warningIcon from '../icons/warning.png'
 class ModalExample extends React.Component {
   constructor(props) {
     super(props);
-    const { info: { link = {}, description = {} } } = this.props
-    const msg1 = link.message || ''
-    const msg2 = description.message || ''
+    const { errors } = this.props
     this.state = {
       modal: true,
-      msgs: [msg1, msg2]
+      errors
     };
 
     this.toggle = this.toggle.bind(this);
@@ -37,15 +35,11 @@ class ModalExample extends React.Component {
 
           </ModalHeader>
           <ModalBody>
-            {this.state.msgs.map((msg, index) => {
-              if (msg) {
-                return (<h4 key={index}>
-                  {msg}
-                </h4>)
-              } else {
-                return null
-              }
-            })}
+            {this.state.errors.map((error, index) => (
+              <h4 key={index}>
+                {error}
+              </h4>
+            ))}
 
 
           </ModalBody>

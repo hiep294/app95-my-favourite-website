@@ -10,7 +10,7 @@ db.once('open', function () {
 });
 
 app.use(express.json())
-app.use('/api/websites', require('./routes/api/websites'))
+app.use('/api/websites', require('./routes/api/web'))
 
 //serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

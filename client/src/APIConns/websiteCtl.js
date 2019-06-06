@@ -1,13 +1,16 @@
 class WebsiteCtl {
-  static read = (dispatch) => {
+  static read = (handleSuccess, handleFailedConnection) => {
     fetch('/api/websites', {
       method: 'GET'
     })
       .then(res => res.json())
-      .then(websites => dispatch(websites))
-      .catch(errs => console.log(errs))
+      .then(res => handleSuccess(res.good))
+      .catch(errs => {
+        console.log(errs)
+        handleFailedConnection()
+      })
   }
-  static create = (website, handleSuccess, handleInvalid) => {
+  static create = (website, handleSuccess, handleInvalid, handleFailedConnection) => {
     fetch('/api/websites', {
       method: 'POST',
       body: JSON.stringify(website),
@@ -21,13 +24,16 @@ class WebsiteCtl {
           handleSuccess(pk.item)
           // console.log(pk.item)
         } else {
-          handleInvalid(pk.info)
+          handleInvalid(pk.errors)
         }
       })
-      .catch(errs => console.log(errs))
+      .catch(errs => {
+        handleFailedConnection()
+        console.log(errs)
+      })
   }
 
-  static update = (website, handleSuccess, handleInvalid) => {
+  static update = (website, handleSuccess, handleInvalid, handleFailedConnection) => {
     fetch(`/api/websites/${website._id}`, {
       method: 'PUT',
       body: JSON.stringify(website),
@@ -36,17 +42,20 @@ class WebsiteCtl {
       }
     })
       .then(res => res.json())
-      .then(data => {
-        if (data.success) {
+      .then(res => {
+        if (res.success) {
           handleSuccess()
         } else {
-          handleInvalid(data.info)
+          handleInvalid(res.errors)
         }
       })
-      .catch(errs => console.log(errs))
+      .catch(errs => {
+        handleFailedConnection()
+        console.log(errs)
+      })
   }
 
-  static delete = (_id, handleSuccess) => {
+  static delete = (_id, handleSuccess, handleInvalid, handleFailedConnection) => {
     fetch(`/api/websites/${_id}`, {
       method: 'DELETE'
     })
@@ -54,9 +63,14 @@ class WebsiteCtl {
       .then(data => {
         if (data.success) {
           handleSuccess()
+        } else {
+          handleInvalid()
         }
       })
-      .catch(errs => console.log(errs))
+      .catch(errs => {
+        handleFailedConnection()
+        console.log(errs)
+      })
   }
 }
 

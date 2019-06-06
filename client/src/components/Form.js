@@ -64,7 +64,7 @@ class Form extends React.Component {
 
     return (
       <div className="todo-form" style={{ position: 'sticky', top: '0px' }}>
-        {this.state.errors.status ? <ErrorsLaunchModel info={this.state.errors.info} onCloseErrorLaunchModel={this.onCloseErrorLaunchModel} /> : null}
+        {this.state.errors.status ? <ErrorsLaunchModel errors={this.state.errors.errors} onCloseErrorLaunchModel={this.onCloseErrorLaunchModel} /> : null}
         <div className="form-group">
           <input name="link" id="todoTitle" placeholder="Link" type="text" className="form-control"
             value={this.state.link || ''}
@@ -108,10 +108,10 @@ const mapDispatchToProps = (dispatch) => ({
       setTimeout(() => {
         setErrors({ errors: { status: false }, link: '', description: '' })
       }, 0)
-    }, (info) => {
+    }, (errors) => {
       // handling invalid
       setTimeout(() => {
-        setErrors({ errors: { status: true, info } })
+        setErrors({ errors: { status: true, errors } })
       }, 0)
     })
   },
@@ -123,11 +123,10 @@ const mapDispatchToProps = (dispatch) => ({
       setTimeout(() => {
         setErrors({ errors: { status: false }, link: '', description: '' })
       }, 0)
-    }, (info) => {
+    }, (errors) => {
       // handling invalid
-      console.log(info)
       setTimeout(() => {
-        setErrors({ errors: { status: true, info } })
+        setErrors({ errors: { status: true, errors } })
       }, 0)
     })
 
